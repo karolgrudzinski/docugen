@@ -1,11 +1,13 @@
 package com.grudzinski.docugen.services;
 
+import com.grudzinski.docugen.exceptions.NotFoundException;
 import com.grudzinski.docugen.model.document.WeddingCeremony;
 import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
@@ -25,6 +27,11 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
 
     @Override
     public WeddingCeremony findById(Long id) {
-        return null;
+        Optional<WeddingCeremony> weddingCeremonyOptional;
+        weddingCeremonyOptional = weddingCeremonyRepository.findById(id);
+        if (!weddingCeremonyOptional.isPresent()) {
+            throw new NotFoundException("Document not found for Id: " + id);
+        }
+        return weddingCeremonyOptional.get();
     }
 }
