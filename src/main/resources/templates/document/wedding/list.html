@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Oprawa muzyczna ślubu</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Oprawa muzyczna ślubu w kościele
+            </h3>
+            <a class="btn btn-primary" href="#" role="button" type="button" th:href="@{'/wedding/new'}" >Nowy dokument</a>
+            <div class="table-responsive-md" th:if="${not #lists.isEmpty(weddings)}">
+                <table class="table table-hover table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="d-none d-sm-table-cell">#</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Zamawiający</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Pakiet</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Data wydarzenia</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Akcje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:remove="all">
+                        <th scope="row" class="d-none d-sm-table-cell">1</th>
+                        <td class="d-block d-sm-table-cell">Jan Nowak, Anna Kowalska</td>
+                        <td class="d-inline d-sm-table-cell">Pakiet B</td>
+                        <td class="d-inline d-sm-table-cell">01.04.2019, 17:30</td>
+                        <td class="d-block d-sm-table-cell">
+                            <a class="btn btn-info" href="#" role="button" type="button">Podgląd</a>
+                            <a class="btn btn-primary" href="#" role="button" type="button">Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button" type="button">Usuń</a></td>
+                    </tr>
+                    <tr th:remove="all">
+                        <th scope="row" class="d-none d-sm-table-cell">2</th>
+                        <td class="d-block d-sm-table-cell">Jan Małolepszy, Anna Jakaśtam</td>
+                        <td class="d-inline d-sm-table-cell">Pakiet C</td>
+                        <td class="d-inline d-sm-table-cell">04.07.2020, 18:00</td>
+                        <td class="d-block d-sm-table-cell">
+                            <a class="btn btn-info" href="#" role="button" type="button">Podgląd</a>
+                            <a class="btn btn-primary" href="#" role="button" type="button">Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button" type="button">Usuń</a>
+                        </td>
+                    </tr>
+                    <tr th:each="wedding : ${weddings}">
+                        <th scope="row" class="d-none d-sm-table-cell" th:text="${wedding.id}">3</th>
+                        <td class="d-block d-sm-table-cell" th:text="${wedding.customer.name}">Jan Kowalski, Anna Nowak</td>
+                        <td class="d-inline d-sm-table-cell" th:text="${wedding.servicePackage}">Pakiet A</td>
+                        <td class="d-inline d-sm-table-cell" th:text="${wedding.getDateTimeOfEvent().toLocalDate() + ', ' + wedding.getDateTimeOfEvent().toLocalTime()}">01.01.2019, 15:00</td>
+                        <td class="d-block d-sm-table-cell">
+                            <a class="btn btn-info" href="#" role="button"
+                               th:href="@{'/wedding/' + ${wedding.id} + '/view'}" type="button">Podgląd</a>
+                            <a class="btn btn-primary" href="#" role="button"
+                               th:href="@{'/wedding/' + ${wedding.id} + '/edit'}" type="button">Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button"
+                               th:href="@{'/wedding/' + ${wedding.id} + '/delete'}" type="button">Usuń</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
