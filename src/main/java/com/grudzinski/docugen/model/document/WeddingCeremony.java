@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -30,11 +30,8 @@ public class WeddingCeremony extends BaseDocument {
     @Column(name = "performer")
     private String performer;
 
-    @Column(name = "date_of_event")
-    private LocalDate dateOfEvent;
-
-    @Column(name = "time_of_event")
-    private LocalTime timeOfEvent;
+    @Column(name = "date_time_of_event")
+    private LocalDateTime dateTimeOfEvent;
 
     @Column(name = "church")
     private String church;
