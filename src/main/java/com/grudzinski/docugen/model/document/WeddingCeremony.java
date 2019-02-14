@@ -1,13 +1,11 @@
 package com.grudzinski.docugen.model.document;
 
 import com.grudzinski.docugen.model.base.Customer;
+import com.grudzinski.docugen.model.base.PaymentMethod;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,4 +45,11 @@ public class WeddingCeremony extends BaseDocument {
 
     @Column(name = "advance")
     private BigDecimal advance;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "payment_method")
+    private PaymentMethod paymentMethod;
+
+    @Column(name = "document_short_name")
+    private String documentShortName;
 }
