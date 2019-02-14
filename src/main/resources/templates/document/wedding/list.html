@@ -20,12 +20,15 @@
 <body>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                Oprawa muzyczna ślubu w kościele
-            </h3>
-            <a class="btn btn-primary" href="#" role="button" type="button" th:href="@{'/wedding/new'}" >Nowy dokument</a>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Oprawa muzyczna ślubu w kościele</h2>
+            <div class="row">
+                <a class="btn btn-primary card-link" href="#" role="button" type="button" th:href="@{'/wedding/new'}">
+                    Nowy dokument</a>
+            </div>
+        </div>
+        <div class="card-body">
             <div class="table-responsive-md" th:if="${not #lists.isEmpty(weddings)}">
                 <table class="table table-hover table-sm">
                     <thead>
@@ -61,9 +64,14 @@
                     </tr>
                     <tr th:each="wedding : ${weddings}">
                         <th scope="row" class="d-none d-sm-table-cell" th:text="${wedding.id}">3</th>
-                        <td class="d-block d-sm-table-cell" th:text="${wedding.customer.name}">Jan Kowalski, Anna Nowak</td>
+                        <td class="d-block d-sm-table-cell" th:text="${wedding.customer.name}">Jan Kowalski, Anna
+                            Nowak
+                        </td>
                         <td class="d-inline d-sm-table-cell" th:text="${wedding.servicePackage}">Pakiet A</td>
-                        <td class="d-inline d-sm-table-cell" th:text="${wedding.getDateTimeOfEvent().toLocalDate() + ', ' + wedding.getDateTimeOfEvent().toLocalTime()}">01.01.2019, 15:00</td>
+                        <td class="d-inline d-sm-table-cell"
+                            th:text="${wedding.getDateTimeOfEvent().toLocalDate() + ', ' + wedding.getDateTimeOfEvent().toLocalTime()}">
+                            01.01.2019, 15:00
+                        </td>
                         <td class="d-block d-sm-table-cell">
                             <a class="btn btn-info" href="#" role="button"
                                th:href="@{'/wedding/' + ${wedding.id} + '/view'}" type="button">Podgląd</a>
@@ -78,7 +86,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
