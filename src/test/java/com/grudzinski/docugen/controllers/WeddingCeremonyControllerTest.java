@@ -1,6 +1,7 @@
 package com.grudzinski.docugen.controllers;
 
 import com.grudzinski.docugen.model.document.WeddingCeremony;
+import com.grudzinski.docugen.services.WeddingCeremonyRendererService;
 import com.grudzinski.docugen.services.WeddingCeremonyService;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,9 @@ public class WeddingCeremonyControllerTest {
     @Mock
     WeddingCeremonyService weddingCeremonyService;
 
+    @Mock
+    WeddingCeremonyRendererService weddingCeremonyRendererService;
+
     WeddingCeremonyController controller;
 
     MockMvc mockMvc;
@@ -29,7 +33,7 @@ public class WeddingCeremonyControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        controller = new WeddingCeremonyController(weddingCeremonyService);
+        controller = new WeddingCeremonyController(weddingCeremonyService, weddingCeremonyRendererService);
 
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }

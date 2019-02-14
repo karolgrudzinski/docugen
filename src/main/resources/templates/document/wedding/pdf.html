@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta HTTP-EQUIV="Content-Type" CONTENT="text/html;" charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Oprawa muzyczna ślubu</title>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css" th:href="@{classpath:/static/css/fonts.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/wedding.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/wedding.css" th:href="@{classpath:/static/css/wedding.css}"/>
+    <style type="text/css">
+        @media print
+        {
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-header font-cambria">AudioTax – Oprawa muzyczna</div>
+<div class="page-footer font-cambria">AudioTax – Oprawa muzyczna; e-mail: oprawa@audiotax.pl<br/>
+    Paweł Grudziński 510-091-185;  Róża Grudzińska 665-978-296</div>
+<div th:replace="document/wedding/view::content">
+    Here be dragons
+</div>
+</body>
+</html>
