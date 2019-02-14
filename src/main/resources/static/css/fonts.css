@@ -1,0 +1,156 @@
+.font-arial {
+    font-family: Arial, Arimo, sans-serif;
+}
+
+@font-face {
+    font-family: Arimo;
+    src: url(../fonts/Arimo-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Arimo;
+    src: url(../fonts/Arimo-Bold.ttf);
+    font-weight: bold;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Arimo;
+    src: url(../fonts/Arimo-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Arimo;
+    src: url(../fonts/Arimo-Italic.ttf);
+    font-weight: normal;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+.font-cambria {
+    font-family: Cambria, Caladea, serif;
+}
+
+@font-face {
+    font-family: Caladea;
+    src: url(../fonts/Caladea-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Caladea;
+    src: url(../fonts/Caladea-Bold.ttf);
+    font-weight: bold;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Caladea;
+    src: url(../fonts/Caladea-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Caladea;
+    src: url(../fonts/Caladea-Italic.ttf);
+    font-weight: normal;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+.font-times {
+    font-family: "Times New Roman", Tinos, serif;
+}
+
+@font-face {
+    font-family: Tinos;
+    src: url(../fonts/Tinos-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+@font-face {
+    font-family: Tinos;
+    src: url(../fonts/Tinos-Bold.ttf);
+    font-weight: bold;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+@font-face {
+    font-family: Tinos;
+    src: url(../fonts/Tinos-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+@font-face {
+    font-family: Tinos;
+    src: url(../fonts/Tinos-Italic.ttf);
+    font-weight: normal;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+.font-calibri {
+    font-family: Calibri, Carlito, sans-serif;
+}
+
+@font-face {
+    font-family: Carlito;
+    src: url(../fonts/Carlito-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Carlito;
+    src: url(../fonts/Carlito-Bold.ttf);
+    font-weight: bold;
+    font-style: normal;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Carlito;
+    src: url(../fonts/Carlito-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
+
+@font-face {
+    font-family: Carlito;
+    src: url(../fonts/Carlito-Italic.ttf);
+    font-weight: normal;
+    font-style: italic;
+    -fs-pdf-font-embed: embed;
+    -fs-pdf-font-encoding: Identity-H;
+}
