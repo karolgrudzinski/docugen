@@ -107,14 +107,14 @@
                                     <tr>
                                         <td class="font-times text-normal">w dniu</td>
                                         <td class="font-times text-normal text-bold"
-                                            th:text="${#temporals.format(wedding.getDateTimeOfEvent(), 'dd.MM.YYYY')}">
+                                            th:text="${#temporals.format(wedding.getDateOfEvent(), 'dd.MM.YYYY')}">
                                             01.05.2019
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="font-times text-normal">o godzinie</td>
                                         <td class="font-times text-normal text-bold"
-                                            th:text="${#temporals.format(wedding.getDateTimeOfEvent(), 'HH:mm')}">
+                                            th:text="${wedding.getTimeOfEvent()}">
                                             16:30
                                         </td>
                                     </tr>

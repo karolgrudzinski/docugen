@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -28,8 +28,11 @@ public class WeddingCeremony extends BaseDocument {
     @Column(name = "performer")
     private String performer;
 
-    @Column(name = "date_time_of_event")
-    private LocalDateTime dateTimeOfEvent;
+    @Column(name = "date_of_event")
+    private LocalDate dateOfEvent;
+
+    @Column(name = "time_of_event")
+    private LocalTime timeOfEvent;
 
     @Column(name = "church")
     private String church;

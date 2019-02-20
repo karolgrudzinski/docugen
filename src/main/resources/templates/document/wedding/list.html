@@ -69,7 +69,7 @@
                         </td>
                         <td class="d-inline d-sm-table-cell" th:text="${wedding.servicePackage}">Pakiet A</td>
                         <td class="d-inline d-sm-table-cell"
-                            th:text="${wedding.getDateTimeOfEvent().toLocalDate() + ', ' + wedding.getDateTimeOfEvent().toLocalTime()}">
+                            th:text="${wedding.getDateOfEvent() + ', ' + wedding.getTimeOfEvent()}">
                             01.01.2019, 15:00
                         </td>
                         <td class="d-block d-sm-table-cell">
