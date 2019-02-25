@@ -13,6 +13,7 @@ import org.xhtmlrenderer.pdf.ITextFontResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -54,8 +55,8 @@ public class WeddingCeremonyFlyingSaucerRenderer implements WeddingCeremonyRende
 //        ClassPathResource regular = new ClassPathResource("fonts/Arimo-Regular.ttf");
 //        fontResolver.addFont(regular.getURL().toString(), BaseFont.IDENTITY_H, true);
 
-        List<String> fontNames = List.of("Arimo", "Tinos", "Caladea", "Carlito");
-        List<String> fontVariants = List.of("Regular", "Italic", "Bold", "BoldItalic");
+        List<String> fontNames = Arrays.asList("Arimo", "Tinos", "Caladea", "Carlito");
+        List<String> fontVariants = Arrays.asList("Regular", "Italic", "Bold", "BoldItalic");
         fontNames.forEach(fontName -> fontVariants.forEach(fontVariant -> {
             try {
                 fontResolver.addFont("static/fonts/" + fontName + "-" + fontVariant + ".ttf", BaseFont.IDENTITY_H, true);
@@ -92,6 +93,6 @@ public class WeddingCeremonyFlyingSaucerRenderer implements WeddingCeremonyRende
         ByteArrayInputStream inputStream = new ByteArrayInputStream(html.getBytes(UTF_8));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         tidy.parseDOM(inputStream, outputStream);
-        return outputStream.toString(UTF_8);
+        return outputStream.toString(UTF_8.name());
     }
 }
