@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Oprawa muzyczna ślubu</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="card">
+        <form th:object="${wedding}" th:action="@{/wedding/save}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="card-header">
+                <h2 class="card-title">Oprawa muzyczna ślubu w kościele</h2>
+                <h2 th:text="${wedding.getDocumentShortName()}">20190101 UMOWA Nowak Suwałki</h2>
+                <div class="row">
+                    <a class="btn btn-info card-link" href="#" role="button" th:href="@{/wedding/list}" type="button">Powrót</a>
+                    <button type="submit" class="btn btn-primary card-link" role="button">Zapisz</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <span>Umowa zawarta</span>
+                <div class="card border-secondary">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>dnia:</label>
+                                <input type="date" class="form-control" th:field="*{dateOfSigning}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('dateOfSigning')}" th:errors="*{dateOfSigning}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>w:</label>
+                                <input type="text" class="form-control" th:field="*{placeOfSigning}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('placeOfSigning')}" th:errors="*{placeOfSigning}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" th:field="*{customer.id}"/>
+                <span>Pomiędzy:</span>
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <div class="form-group form-row">
+                            <label>Zamawiającym:</label>
+                            <input type="text" class="form-control" th:field="*{customer.name}"
+                                   th:errorclass="is-invalid"/>
+                            <div th:if="${#fields.hasErrors('customer.name')}" th:errors="*{customer.name}"
+                                 class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group form-row">
+                            <label>Adres:</label>
+                            <input type="text" class="form-control" th:field="*{customer.address}"
+                                   th:errorclass="is-invalid"/>
+                            <div th:if="${#fields.hasErrors('customer.address')}" th:errors="*{customer.address}"
+                                 class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group form-row">
+                            <label>Telefon:</label>
+                            <input type="text" class="form-control" th:field="*{customer.phone}"
+                                   th:errorclass="is-invalid"/>
+                            <div th:if="${#fields.hasErrors('customer.phone')}" th:errors="*{customer.phone}"
+                                 class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group form-row">
+                            <label>E-mail:</label>
+                            <input type="email" class="form-control" th:field="*{customer.email}"
+                                   th:errorclass="is-invalid"/>
+                            <div th:if="${#fields.hasErrors('customer.email')}" th:errors="*{customer.email}"
+                                 class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <span>a AudioTax</span>
+                <div class="card border-secondary">
+                    <div class="card-body">
+                        <div class="form-group form-row">
+                            <label>reprezentowanym przez:</label>
+                            <input type="text" class="form-control" th:field="*{performer}" th:errorclass="is-invalid"/>
+                            <div th:if="${#fields.hasErrors('performer')}" th:errors="*{performer}"
+                                 class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <div class="card-title">Uroczystość</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>W kościele:</label>
+                                <input type="text" class="form-control" th:field="*{church}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('church')}" th:errors="*{church}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>w:</label>
+                                <input type="text" class="form-control" th:field="*{placeOfEvent}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('placeOfEvent')}" th:errors="*{placeOfEvent}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Data:</label>
+                                <input type="date" class="form-control" th:field="*{dateOfEvent}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('dateOfEvent')}" th:errors="*{dateOfEvent}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Godzina:</label>
+                                <input type="time" class="form-control" th:field="*{timeOfEvent}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('timeOfEvent')}" th:errors="*{timeOfEvent}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-group">
+                            <label>Oprawa w składzie:</label>
+                            <input type="text" class="form-control" th:field="*{servicePackage}"
+                                   th:errorclass="is-invalid"/>
+                            <div th:if="${#fields.hasErrors('servicePackage')}" th:errors="*{servicePackage}"
+                                 class="invalid-feedback"></div>
+                            <!--                    <input class="form-check-input" type="checkbox" th:field="*{servicePackage}" th:errorclass="is-invalid"/>-->
+                            <!--                    <label class="form-check-label" th:for="${#ids.prev('servicePackage')}" th:text="Skrzypce">-->
+                            <!--                        Skrzypce-->
+                            <!--                    </label>-->
+                            <!--                    <div th:if="${#fields.hasErrors('dateOfEvent')}"  th:errors="*{dateOfEvent}"-->
+                            <!--                         class="invalid-feedback"></div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-secondary">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Należność:</label>
+                                <input type="number" class="form-control" th:field="*{charge}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('charge')}" th:errors="*{charge}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col">
+                                <label>Zaliczka:</label>
+                                <input type="number" class="form-control" th:field="*{advance}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('advance')}" th:errors="*{advance}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Forma zapłaty:</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" th:field="*{paymentMethod}"
+                                          th:value="#{paymentmethod.CASH}"  th:errorclass="is-invalid" checked="checked"/>
+                                    <label class="form-check-label" th:for="${#ids.prev('paymentMethod')}"
+                                    th:text="#{paymentmethod.CASH}">
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" th:field="*{paymentMethod}"
+                                           th:value="#{paymentmethod.TRANSFER}"  th:errorclass="is-invalid"/>
+                                    <label class="form-check-label" th:for="${#ids.prev('paymentMethod')}"
+                                           th:text="#{paymentmethod.TRANSFER}">
+                                </div>
+                                <div th:if="${#fields.hasErrors('paymentMethod')}" th:errors="*{paymentMethod}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--            <input class="form-control" type="date" value="2019-01-01"/>-->
+                <!--            <input class="form-control" type="time" value="01:01:00"/>-->
+                <!--            <input class="form-control" type="datetime-local" value="2019-01-01 01:00:30"/>-->
+                <!--            <input class="form-control" type="month" />-->
+                <!--            <input class="form-control" type="week" />-->
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

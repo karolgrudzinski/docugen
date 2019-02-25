@@ -1,8 +1,11 @@
 package com.grudzinski.docugen.services;
 
 import com.grudzinski.docugen.exceptions.NotFoundException;
+import com.grudzinski.docugen.model.base.Customer;
 import com.grudzinski.docugen.model.document.WeddingCeremony;
+import com.grudzinski.docugen.repository.CustomerRepository;
 import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,12 +13,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
 
-    private WeddingCeremonyRepository weddingCeremonyRepository;
+    private final WeddingCeremonyRepository weddingCeremonyRepository;
+    private final CustomerRepository customerRepository;
 
-    public WeddingCeremonyServiceImpl(WeddingCeremonyRepository weddingCeremonyRepository) {
+    public WeddingCeremonyServiceImpl(WeddingCeremonyRepository weddingCeremonyRepository, CustomerRepository customerRepository) {
         this.weddingCeremonyRepository = weddingCeremonyRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -33,5 +39,20 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
             throw new NotFoundException("Document not found for Id: " + id);
         }
         return weddingCeremonyOptional.get();
+    }
+
+    @Override
+    public WeddingCeremony save(WeddingCeremony weddingCeremony) {
+        if (weddingCeremony.getCustomer().getId() == null) {
+            Customer savedCustomer = customerRepository.save(weddingCeremony.getCustomer());
+            if (savedCustomer.getId() != null) {
+                weddingCeremony.setCustomer(savedCustomer);
+            }
+        }
+
+        WeddingCeremony savedWeddingCeremony = weddingCeremonyRepository.save(weddingCeremony);
+        log.debug("Saved WeddingCeremony:" + savedWeddingCeremony.getId());
+
+        return savedWeddingCeremony;
     }
 }

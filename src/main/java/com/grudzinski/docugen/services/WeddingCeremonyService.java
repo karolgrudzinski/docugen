@@ -7,4 +7,5 @@ import java.util.List;
 public interface WeddingCeremonyService {
     List<WeddingCeremony> getWeddings();
     WeddingCeremony findById(Long id);
+    WeddingCeremony save(WeddingCeremony weddingCeremony);
 }

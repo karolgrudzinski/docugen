@@ -4,6 +4,7 @@ import com.grudzinski.docugen.model.base.Customer;
 import com.grudzinski.docugen.model.base.PaymentMethod;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.time.LocalTime;
 @Entity
 public class WeddingCeremony extends BaseDocument {
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_signing")
     private LocalDate dateOfSigning;
 
@@ -29,6 +31,7 @@ public class WeddingCeremony extends BaseDocument {
     private String performer;
 
     @Column(name = "date_of_event")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfEvent;
 
     @Column(name = "time_of_event")
