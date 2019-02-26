@@ -1,4 +1,3 @@
-Password: 
 --
 -- PostgreSQL database dump
 --
@@ -138,7 +137,7 @@ ALTER TABLE ONLY public.wedding_ceremony
 --
 
 ALTER TABLE ONLY public.wedding_ceremony
-    ADD CONSTRAINT fkodv045lfykmyigt3r8oaq7g4t FOREIGN KEY (customer_id) REFERENCES public.customers(id);
+    ADD CONSTRAINT wedding_ceremony_customer_id FOREIGN KEY (customer_id) REFERENCES public.customers(id);
 
 
 --
