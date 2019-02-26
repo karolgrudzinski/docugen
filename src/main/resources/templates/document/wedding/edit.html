@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -177,13 +177,13 @@
                                 <label>Forma zapłaty:</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" th:field="*{paymentMethod}"
-                                          th:value="#{paymentmethod.CASH}"  th:errorclass="is-invalid" checked="checked"/>
+                                          th:value="CASH"  th:errorclass="is-invalid" checked="checked"/>
                                     <label class="form-check-label" th:for="${#ids.prev('paymentMethod')}"
                                     th:text="#{paymentmethod.CASH}">
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" th:field="*{paymentMethod}"
-                                           th:value="#{paymentmethod.TRANSFER}"  th:errorclass="is-invalid"/>
+                                           th:value="TRANSFER"  th:errorclass="is-invalid"/>
                                     <label class="form-check-label" th:for="${#ids.prev('paymentMethod')}"
                                            th:text="#{paymentmethod.TRANSFER}">
                                 </div>
