@@ -197,6 +197,19 @@
                     </div>
                 </div>
 
+                <div class="card border-primary">
+                <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nazwa wygenerowanego pliku (zostaw puste by wygenerować)</label>
+                        <input type="text" th:field="*{documentShortName}" class="form-control" th:errorclass="is-invalid"/>
+                        <div th:if="${#fields.hasErrors('documentShortName')}" th:errors="*{documentShortName}"
+                             class="invalid-feedback"></div>
+                    </div>
+                </div>
+                </div>
+                </div>
+
                 <!--            <input class="form-control" type="date" value="2019-01-01"/>-->
                 <!--            <input class="form-control" type="time" value="01:01:00"/>-->
                 <!--            <input class="form-control" type="datetime-local" value="2019-01-01 01:00:30"/>-->

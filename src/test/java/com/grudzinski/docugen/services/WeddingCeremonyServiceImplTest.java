@@ -1,6 +1,7 @@
 package com.grudzinski.docugen.services;
 
 import com.grudzinski.docugen.exceptions.NotFoundException;
+import com.grudzinski.docugen.model.base.Customer;
 import com.grudzinski.docugen.model.document.WeddingCeremony;
 import com.grudzinski.docugen.repository.CustomerRepository;
 import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,5 +73,29 @@ public class WeddingCeremonyServiceImplTest {
         assertEquals(3L, weddingsReturned.size());
         verify(weddingCeremonyRepository).findAll();
         verify(weddingCeremonyRepository, never()).findById(anyLong());
+    }
+
+    @Test
+    public void shouldReturnProposedShortName() {
+        WeddingCeremony weddingCeremony = new WeddingCeremony();
+        weddingCeremony.setDateOfEvent(LocalDate.of(2019,02, 03));
+        Customer customer = new Customer();
+        weddingCeremony.setCustomer(customer);
+
+        weddingCeremony.setPlaceOfEvent("Szczecin");
+        customer.setName("Alexander Greatest");
+        assertEquals("20190203-AlexaGreat-Szczec", weddingCeremonyService.getProposedShortName(weddingCeremony));
+
+        weddingCeremony.setPlaceOfEvent("Ełk");
+        assertEquals("20190203-AlexaGreat-Ełk", weddingCeremonyService.getProposedShortName(weddingCeremony));
+
+        customer.setName("Joe Doe");
+        assertEquals("20190203-JoeDoe-Ełk", weddingCeremonyService.getProposedShortName(weddingCeremony));
+
+        customer.setName("");
+        assertEquals("20190203--Ełk", weddingCeremonyService.getProposedShortName(weddingCeremony));
+
+        weddingCeremony.setPlaceOfEvent("");
+        assertEquals("20190203--", weddingCeremonyService.getProposedShortName(weddingCeremony));
     }
 }

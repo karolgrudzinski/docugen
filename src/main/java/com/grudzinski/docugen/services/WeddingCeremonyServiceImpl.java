@@ -8,9 +8,13 @@ import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -41,8 +45,32 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
         return weddingCeremonyOptional.get();
     }
 
+    public String getProposedShortName(WeddingCeremony weddingCeremony) {
+        DateTimeFormatter format = new DateTimeFormatterBuilder().appendPattern("yyyyMMdd").toFormatter();
+        String datePart = weddingCeremony.getDateOfEvent().format(format);
+        String customerPart = Arrays.stream(weddingCeremony.getCustomer().getName().split(" "))
+                .map(s -> {
+                    return s.substring(0, Math.min(s.length(), 5));
+                }).collect(Collectors.joining(""));
+        String place = weddingCeremony.getPlaceOfEvent();
+        String placePart = place.substring(0, Math.min(place.length(), 6));
+//        log.debug("datePart = {}", datePart);
+//        log.debug("custPart = {}", customerPart);
+//        log.debug("placPart = {}", placePart);
+
+        String shortName = "".join("-", datePart, customerPart, placePart);
+
+        log.debug("Generated proposed short name = {}", shortName);
+        return shortName;
+    }
+
     @Override
     public WeddingCeremony save(WeddingCeremony weddingCeremony) {
+        if (weddingCeremony.getDocumentShortName().isEmpty()) {
+            weddingCeremony.setDocumentShortName(getProposedShortName(weddingCeremony));
+            log.debug("Set DocumentShortName to generated value = {}", weddingCeremony.getDocumentShortName());
+        }
+
         if (weddingCeremony.getCustomer().getId() == null) {
             Customer savedCustomer = customerRepository.save(weddingCeremony.getCustomer());
             if (savedCustomer.getId() != null) {
