@@ -23,17 +23,21 @@
     <div class="card">
         <form th:object="${wedding}" th:action="@{/wedding/save}" method="post">
             <a id="top"></a>
-            <div th:fragment="menu" class="navbar">
-                <a class="btn btn-info" href="#" role="button" th:href="@{/wedding/list}" type="button">Powrót</a>
-                <button type="submit" class="btn btn-primary" role="button">Zapisz</button>
-                <a th:if="${bottomMenu != null}" class="btn btn-secondary" href="#top">Na górę</a>
-            </div>
 
             <input type="hidden" th:field="*{id}"/>
 
             <div class="card-header">
                 <h2 class="card-title">Oprawa muzyczna ślubu w kościele</h2>
                 <h2 th:text="${wedding.getDocumentShortName()}">20190101 UMOWA Nowak Suwałki</h2>
+            </div>
+            <div th:fragment="menu" class="navbar">
+                <div>
+                    <a class="btn btn-info" href="#" th:href="@{/wedding/list}">Powrót</a>
+                    <button type="submit" class="btn btn-primary" role="button">Zapisz</button>
+                </div>
+                <div th:if="${bottomMenu != null}">
+                    <a class="btn btn-secondary" href="#top">Na górę</a>
+                </div>
             </div>
             <div class="card-body">
                 <span>Umowa zawarta</span>

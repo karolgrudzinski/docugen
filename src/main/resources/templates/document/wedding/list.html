@@ -23,9 +23,17 @@
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">Oprawa muzyczna ślubu w kościele</h2>
-            <div class="row">
-                <a class="btn btn-primary card-link" href="#" role="button" type="button" th:href="@{'/wedding/new'}">
+         </div>
+        <div th:fragment="menu" class="navbar">
+            <div>
+                <a class="btn btn-primary card-link" href="#" th:href="@{'/wedding/new'}">
                     Nowy dokument</a>
+            </div>
+            <div th:if="${bottomMenu != null}">
+                <a class="btn btn-secondary" href="#top">Na górę</a>
+            </div>
+            <div th:if="${bottomMenu == null}">
+                <a class="btn btn-dark" th:href="@{/logout}">Wyloguj</a>
             </div>
         </div>
         <div class="card-body">
@@ -84,6 +92,8 @@
                 </table>
             </div>
         </div>
+        
+        <div th:replace="::menu(bottomMenu=1)"></div>
     </div>
 </div>
 </body>
