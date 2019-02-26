@@ -97,5 +97,7 @@ public class WeddingCeremonyServiceImplTest {
 
         weddingCeremony.setPlaceOfEvent("");
         assertEquals("20190203--", weddingCeremonyService.getProposedShortName(weddingCeremony));
+
+        assertEquals("", weddingCeremonyService.getProposedShortName(new WeddingCeremony()));
     }
 }

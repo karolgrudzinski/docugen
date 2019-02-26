@@ -46,6 +46,10 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
 
     public String getProposedShortName(WeddingCeremony weddingCeremony) {
         DateTimeFormatter format = new DateTimeFormatterBuilder().appendPattern("yyyyMMdd").toFormatter();
+        if (weddingCeremony.getDateOfEvent() == null) {
+            log.error("DateOfEvent can't be null");
+            return "";
+        }
         String datePart = weddingCeremony.getDateOfEvent().format(format);
         String customerPart = Arrays.stream(weddingCeremony.getCustomer().getName().split(" "))
                 .map(s -> s.substring(0, Math.min(s.length(), 5))).collect(Collectors.joining(""));
