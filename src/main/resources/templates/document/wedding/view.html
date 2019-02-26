@@ -32,13 +32,15 @@
 <body>
 <div class="container">
     <div class="card">
+        <a id="top"></a>
+        <div th:fragment="menu" class="navbar">
+            <a class="btn btn-info" href="#" role="button" th:href="@{/wedding/list}" type="button">Powrót</a>
+            <a class="btn btn-primary" href="#" role="button" th:href="@{/wedding/{id}/pdf(id=${wedding.id})}"
+               type="button">Generuj PDF</a>
+            <a th:if="${bottomMenu != null}" class="btn btn-secondary" href="#top">Na górę</a>
+        </div>
         <div class="card-header">
             <h2 class="card-title" th:text="${wedding.getDocumentShortName()}">20190701 UMOWA Nowak Suwałki</h2>
-            <div th:fragment="menu" class="row">
-                <a class="btn btn-info card-link" href="#" role="button" th:href="@{/wedding/list}" type="button">Powrót</a>
-                <a class="btn btn-primary card-link" href="#" role="button" th:href="@{/wedding/{id}/pdf(id=${wedding.id})}"
-                   type="button">Generuj PDF</a>
-            </div>
         </div>
         <div class="card-body">
             <div style="max-width: 21cm; margin-left: auto; margin-right: auto" class="row">
@@ -244,6 +246,9 @@
                 </div>
             </div>
         </div>
+
+
+        <div th:replace="::menu(bottomMenu=1)"></div>
     </div>
 </div>
 </body>
