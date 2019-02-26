@@ -23,7 +23,7 @@ public class WeddingCeremony extends BaseDocument {
     @Column(name = "place_of_signing")
     private String placeOfSigning;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

@@ -1,7 +1,6 @@
 package com.grudzinski.docugen.services;
 
 import com.grudzinski.docugen.exceptions.NotFoundException;
-import com.grudzinski.docugen.model.base.Customer;
 import com.grudzinski.docugen.model.document.WeddingCeremony;
 import com.grudzinski.docugen.repository.CustomerRepository;
 import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
@@ -49,9 +48,7 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
         DateTimeFormatter format = new DateTimeFormatterBuilder().appendPattern("yyyyMMdd").toFormatter();
         String datePart = weddingCeremony.getDateOfEvent().format(format);
         String customerPart = Arrays.stream(weddingCeremony.getCustomer().getName().split(" "))
-                .map(s -> {
-                    return s.substring(0, Math.min(s.length(), 5));
-                }).collect(Collectors.joining(""));
+                .map(s -> s.substring(0, Math.min(s.length(), 5))).collect(Collectors.joining(""));
         String place = weddingCeremony.getPlaceOfEvent();
         String placePart = place.substring(0, Math.min(place.length(), 6));
 //        log.debug("datePart = {}", datePart);
@@ -69,13 +66,6 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
         if (weddingCeremony.getDocumentShortName().isEmpty()) {
             weddingCeremony.setDocumentShortName(getProposedShortName(weddingCeremony));
             log.debug("Set DocumentShortName to generated value = {}", weddingCeremony.getDocumentShortName());
-        }
-
-        if (weddingCeremony.getCustomer().getId() == null) {
-            Customer savedCustomer = customerRepository.save(weddingCeremony.getCustomer());
-            if (savedCustomer.getId() != null) {
-                weddingCeremony.setCustomer(savedCustomer);
-            }
         }
 
         WeddingCeremony savedWeddingCeremony = weddingCeremonyRepository.save(weddingCeremony);
