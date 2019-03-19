@@ -1,6 +1,6 @@
 INSERT INTO CUSTOMERS(ID, ADDRESS, EMAIL, NAME, PHONE) VALUES
-(1, 'ul. Prosta 1/3, 16-400 Suwałki', 'antek@example.com', 'Antoniego Nowaka', '123-456-789'),
-(2, 'ul. Krzywa 5/8, 16-300 Augustów', 'ala@example.com', 'Alicję Kowalską', '789-564-123');
+(1, 'ul. Prosta 1/3, 16-400 Suwałki', 'antek@example.com', 'Antonim Nowakiem', '123-456-789'),
+(2, 'ul. Krzywa 5/8, 16-300 Augustów', 'ala@example.com', 'Alicją Kowalską', '789-564-123');
 
 INSERT INTO WEDDING_CEREMONY(ID, CREATION_TIME, MODIFICATION_TIME, ADVANCE, CHARGE, CHURCH, DATE_OF_EVENT, DATE_OF_SIGNING, PERFORMER, PLACE_OF_EVENT, PLACE_OF_SIGNING, SERVICE_PACKAGE, PAYMENT_METHOD, CUSTOMER_ID, DOCUMENT_SHORT_NAME, TIME_OF_EVENT) VALUES
 (1, TIMESTAMP '2019-01-12 00:00:00', TIMESTAMP '2019-01-12 00:00:00', 100.00, 300.00, 'św Aleksandra', DATE '2019-06-29', DATE '2019-01-12', 'Jana Wspaniałego', 'Suwałkach', 'Suwałkach', 'Organista', 'CASH', 1, '20190629 UMOWA Nowak Suwałki', TIME '16:30:00');
