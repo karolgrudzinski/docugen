@@ -37,6 +37,7 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row" th:if="${#lists.isEmpty(weddings)}">Brak dokumentów do wyświetlenia</div>
             <div class="table-responsive-md" th:if="${not #lists.isEmpty(weddings)}">
                 <table class="table table-hover table-sm">
                     <thead>
@@ -86,7 +87,8 @@
                             <a class="btn btn-primary" href="#" role="button"
                                th:href="@{'/wedding/' + ${wedding.id} + '/edit'}" type="button">Edytuj</a>
                             <a class="btn btn-danger" href="#" role="button"
-                               th:href="@{'/wedding/' + ${wedding.id} + '/delete'}" type="button">Usuń</a></td>
+                               th:href="@{'/wedding/' + ${wedding.id} + '/delete'}" type="button">Usuń</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

@@ -17,8 +17,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -116,5 +115,40 @@ public class WeddingCeremonyControllerTest {
 
     @Test
     public void getWeddingPDF() {
+    }
+
+    @Test
+    public void testDeleteConfirm() throws Exception {
+        WeddingCeremony wedding = new WeddingCeremony();
+        wedding.setId(3L);
+
+        when(weddingCeremonyService.findById(anyLong())).thenReturn(wedding);
+
+        mockMvc.perform(get("/wedding/3/delete"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("document/wedding/confirmdelete"))
+                .andExpect(model().attributeExists("wedding"));
+    }
+
+    @Test
+    public void testDeleteDocument() throws Exception {
+        mockMvc.perform(post("/wedding/3/delete")
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .param("id", "3"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/"));
+
+        verify(weddingCeremonyService).deleteById(anyLong());
+    }
+
+    @Test
+    public void testDeleteDocumentParamAndFormMismatch() throws Exception {
+        mockMvc.perform(post("/wedding/3/delete")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("id", "2"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/"));
+
+        verify(weddingCeremonyService, never()).deleteById(anyLong());
     }
 }

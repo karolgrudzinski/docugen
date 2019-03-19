@@ -74,6 +74,24 @@ public class WeddingCeremonyController {
         return "redirect:/wedding/" + savedWeddingCeremony.getId() + "/view";
     }
 
+    @GetMapping({"/{id}/delete"})
+    public String deleteConfirm(@PathVariable String id, Model model) {
+        WeddingCeremony weddingCeremony = weddingCeremonyService.findById(Long.valueOf(id));
+        model.addAttribute("wedding", weddingCeremony);
+
+        return "document/wedding/confirmdelete";
+    }
+
+    @PostMapping({"/{id}/delete"})
+    public String deleteDocument(@Valid @ModelAttribute("wedding") WeddingCeremony weddingCeremony,
+                                 @PathVariable String id, Model model) {
+        if (weddingCeremony.getId().equals(Long.valueOf(id))) {
+            weddingCeremonyService.deleteById(weddingCeremony.getId());
+        }
+
+        return "redirect:/";
+    }
+
     @GetMapping({"/{id}/pdf"})
     public void getWeddingPDF(@PathVariable String id, HttpServletResponse response) throws Exception {
         WeddingCeremony weddingCeremony = weddingCeremonyService.findById(Long.valueOf(id));

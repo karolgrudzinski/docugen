@@ -77,4 +77,9 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
 
         return savedWeddingCeremony;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        weddingCeremonyRepository.deleteById(id);
+    }
 }

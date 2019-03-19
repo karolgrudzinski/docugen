@@ -100,4 +100,12 @@ public class WeddingCeremonyServiceImplTest {
 
         assertEquals("", weddingCeremonyService.getProposedShortName(new WeddingCeremony()));
     }
+
+    @Test
+    public void shouldDeleteById() {
+        Long idToDelete = 2L;
+        weddingCeremonyService.deleteById(idToDelete);
+
+        verify(weddingCeremonyRepository).deleteById(anyLong());
+    }
 }
