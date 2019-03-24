@@ -5,6 +5,7 @@ import com.grudzinski.docugen.model.document.WeddingCeremony;
 import com.grudzinski.docugen.repository.CustomerRepository;
 import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
@@ -30,7 +31,8 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
     @Override
     public List<WeddingCeremony> getWeddings() {
         List<WeddingCeremony> weddings = new ArrayList<>();
-        weddingCeremonyRepository.findAll().forEach(weddings::add);
+        weddingCeremonyRepository.findAll(Sort.by("dateOfEvent")).forEach(weddings::add);
+
         return weddings;
     }
 
