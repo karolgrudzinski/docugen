@@ -67,11 +67,11 @@ public class WeddingCeremonyServiceImplTest {
         weddings.add(new WeddingCeremony());
         weddings.add(new WeddingCeremony());
 
-        when(weddingCeremonyRepository.findAll()).thenReturn(weddings);
+        when(weddingCeremonyRepository.findAll(any())).thenReturn(weddings);
 
         List<WeddingCeremony> weddingsReturned = weddingCeremonyService.getWeddings();
         assertEquals(3L, weddingsReturned.size());
-        verify(weddingCeremonyRepository).findAll();
+        verify(weddingCeremonyRepository).findAll(any());
         verify(weddingCeremonyRepository, never()).findById(anyLong());
     }
 
