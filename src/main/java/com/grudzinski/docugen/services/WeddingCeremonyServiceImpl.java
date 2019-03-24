@@ -67,6 +67,14 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
 
     @Override
     public WeddingCeremony save(WeddingCeremony weddingCeremony) {
+        // TODO: Create DTO for create/update form and move this to proper DTO->Entity converter
+        if (weddingCeremony.getId() != null) {
+            WeddingCeremony weddingFromDB = this.findById(weddingCeremony.getId());
+            if (weddingFromDB != null) {
+                weddingCeremony.setCreationTime(weddingFromDB.getCreationTime());
+            }
+        }
+
         if (weddingCeremony.getDocumentShortName().isEmpty()) {
             weddingCeremony.setDocumentShortName(getProposedShortName(weddingCeremony));
             log.debug("Set DocumentShortName to generated value = {}", weddingCeremony.getDocumentShortName());
