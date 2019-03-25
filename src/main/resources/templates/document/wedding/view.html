@@ -16,6 +16,9 @@
     <script crossorigin="anonymous"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
     <link href="/css/fonts.css" rel="stylesheet" type="text/css"/>
     <link href="/static/css/fonts.css" rel="stylesheet" th:href="@{classpath:/static/css/fonts.css}" type="text/css"/>
     <link href="/css/wedding.css" rel="stylesheet" type="text/css"/>
@@ -39,12 +42,14 @@
         </div>
         <div th:fragment="menu" class="navbar">
             <div>
-                <a class="btn btn-info" href="#" th:href="@{/wedding/list}">Powrót</a>
+                <a class="btn btn-info" href="#" th:href="@{/wedding/list}">
+                    <span class="fas fa-times">&nbsp;</span>Powrót</a>
                 <a class="btn btn-primary" href="#" th:href="@{/wedding/{id}/pdf(id=${wedding.id})}"
-                   type="button">Generuj PDF</a>
+                   type="button"><span class="fas fa-file-pdf">&nbsp;</span>Generuj PDF</a>
             </div>
             <div th:if="${bottomMenu != null}">
-                <a class="btn btn-secondary" href="#top">Na górę</a>
+                <a class="btn btn-secondary" href="#top">
+                    <span class="fas fa-arrow-up">&nbsp;</span>Na górę</a>
             </div>
         </div>
         <div class="card-body">

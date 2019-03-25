@@ -16,6 +16,9 @@
     <script crossorigin="anonymous"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
 </head>
 <body>
 
@@ -27,13 +30,15 @@
         <div th:fragment="menu" class="navbar">
             <div>
                 <a class="btn btn-primary card-link" href="#" th:href="@{'/wedding/new'}">
-                    Nowy dokument</a>
+                    <span class="fas fa-file-contract">&nbsp;</span>Nowy dokument</a>
             </div>
             <div th:if="${bottomMenu != null}">
-                <a class="btn btn-secondary" href="#top">Na górę</a>
+                <a class="btn btn-secondary" href="#top">
+                    <span class="fas fa-arrow-up">&nbsp;</span>Na górę</a>
             </div>
             <div th:if="${bottomMenu == null}">
-                <a class="btn btn-dark" th:href="@{/logout}">Wyloguj</a>
+                <a class="btn btn-dark" th:href="@{/logout}">
+                    <span class="fas fa-door-open">&nbsp;</span>Wyloguj</a>
             </div>
         </div>
         <div class="card-body">
@@ -56,9 +61,13 @@
                         <td class="d-inline d-sm-table-cell">Pakiet B</td>
                         <td class="d-inline d-sm-table-cell">01.04.2019, 17:30</td>
                         <td class="d-block d-sm-table-cell">
-                            <a class="btn btn-info" href="#" role="button" type="button">Podgląd</a>
-                            <a class="btn btn-primary" href="#" role="button" type="button">Edytuj</a>
-                            <a class="btn btn-danger" href="#" role="button" type="button">Usuń</a></td>
+                            <a class="btn btn-info" href="#" role="button" type="button">
+                                <span class="fas fa-file-alt">&nbsp;</span>Podgląd</a>
+                            <a class="btn btn-primary" href="#" role="button" type="button">
+                                <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button" type="button">
+                                <span class="fas fa-trash-alt">&nbsp;</span>Usuń</a>
+                        </td>
                     </tr>
                     <tr th:remove="all">
                         <th scope="row" class="d-none d-sm-table-cell">2</th>
@@ -66,9 +75,12 @@
                         <td class="d-inline d-sm-table-cell">Pakiet C</td>
                         <td class="d-inline d-sm-table-cell">04.07.2020, 18:00</td>
                         <td class="d-block d-sm-table-cell">
-                            <a class="btn btn-info" href="#" role="button" type="button">Podgląd</a>
-                            <a class="btn btn-primary" href="#" role="button" type="button">Edytuj</a>
-                            <a class="btn btn-danger" href="#" role="button" type="button">Usuń</a>
+                            <a class="btn btn-info" href="#" role="button" type="button">
+                                <span class="fas fa-file-alt">&nbsp;</span>Podgląd</a>
+                            <a class="btn btn-primary" href="#" role="button" type="button">
+                                <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button" type="button">
+                                <span class="fas fa-trash-alt">&nbsp;</span>Usuń</a>
                         </td>
                     </tr>
                     <tr th:each="wedding : ${weddings}">
@@ -83,11 +95,14 @@
                         </td>
                         <td class="d-block d-sm-table-cell">
                             <a class="btn btn-info" href="#" role="button"
-                               th:href="@{'/wedding/' + ${wedding.id} + '/view'}" type="button">Podgląd</a>
+                               th:href="@{'/wedding/' + ${wedding.id} + '/view'}" type="button">
+                                <span class="fas fa-file-alt">&nbsp;</span>Podgląd</a>
                             <a class="btn btn-primary" href="#" role="button"
-                               th:href="@{'/wedding/' + ${wedding.id} + '/edit'}" type="button">Edytuj</a>
+                               th:href="@{'/wedding/' + ${wedding.id} + '/edit'}" type="button">
+                                <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
                             <a class="btn btn-danger" href="#" role="button"
-                               th:href="@{'/wedding/' + ${wedding.id} + '/delete'}" type="button">Usuń</a>
+                               th:href="@{'/wedding/' + ${wedding.id} + '/delete'}" type="button">
+                               <span class="fas fa-trash-alt">&nbsp;</span>Usuń</a>
                         </td>
                     </tr>
                     </tbody>

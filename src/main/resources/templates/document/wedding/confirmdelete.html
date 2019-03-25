@@ -16,6 +16,9 @@
     <script crossorigin="anonymous"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
 </head>
 <body>
 
@@ -32,8 +35,10 @@
             </div>
             <div class="card-body">
                 <div>
-                    <button type="submit" class="btn btn-danger" role="button">Usuń</button>
-                    <a class="btn btn-info" href="#" th:href="@{/wedding/list}">Anuluj</a>
+                    <a class="btn btn-info" href="#" th:href="@{/wedding/list}">
+                        <span class="fas fa-times">&nbsp;</span>Anuluj</a>
+                    <button type="submit" class="btn btn-danger" role="button">
+                        <span class="fas fa-trash-alt">&nbsp;</span>Usuń</button>
                 </div>
             </div>
         </form>
