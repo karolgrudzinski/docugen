@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -39,7 +41,10 @@ public class WeddingCeremonyControllerTest {
         MockitoAnnotations.initMocks(this);
         controller = new WeddingCeremonyController(weddingCeremonyService, weddingCeremonyRendererService);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver(),
+                        new SortHandlerMethodArgumentResolver())
+                .build();
     }
 
     @Test
@@ -49,14 +54,14 @@ public class WeddingCeremonyControllerTest {
         weddings.add(new WeddingCeremony());
         weddings.add(new WeddingCeremony());
 
-        when(weddingCeremonyService.getWeddings()).thenReturn(weddings);
+        when(weddingCeremonyService.getWeddingsSorted(any())).thenReturn(weddings);
 
         mockMvc.perform(get("/wedding/index"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("document/wedding/list"))
                 .andExpect(model().attributeExists("weddings"));
 
-        verify(weddingCeremonyService).getWeddings();
+        verify(weddingCeremonyService).getWeddingsSorted(any());
     }
 
     @Test
