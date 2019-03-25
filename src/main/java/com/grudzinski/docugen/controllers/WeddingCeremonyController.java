@@ -4,6 +4,8 @@ import com.grudzinski.docugen.model.document.WeddingCeremony;
 import com.grudzinski.docugen.services.WeddingCeremonyRendererService;
 import com.grudzinski.docugen.services.WeddingCeremonyService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,8 +32,14 @@ public class WeddingCeremonyController {
     }
 
     @RequestMapping({"/", "/index", "/list"})
-    public String listWeddings(Model model) {
-        model.addAttribute("weddings", weddingCeremonyService.getWeddings());
+    public String listWeddings(@SortDefault(value = "dateOfEvent", direction = Sort.Direction.ASC) Sort sort,
+                               Model model) {
+
+        model.addAttribute("weddings", weddingCeremonyService.getWeddingsSorted(sort));
+
+        Sort.Order order = sort.get().findFirst().get();
+        model.addAttribute("sortProperty", order.getProperty());
+        model.addAttribute("sortDesc", order.isDescending());
 
 //        return TEMPLATE_PREFIX + "list";
         return "document/wedding/list";
@@ -113,6 +121,4 @@ public class WeddingCeremonyController {
         outputStream.flush();
         response.flushBuffer();
     }
-
-
 }

@@ -48,9 +48,36 @@
                     <thead>
                     <tr>
                         <th scope="col" class="d-none d-sm-table-cell">#</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Zamawiający</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Pakiet</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Data wydarzenia</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Zamawiający
+                            <span th:if="${sortProperty == 'customer.name'}">
+                                <a th:if="${sortDesc == false}" th:href="@{'?sort=customer.name,desc'}"
+                                   class="fas fa-sort-alpha-up"></a>
+                                <a th:if="${sortDesc == true}" th:href="@{'?sort=customer.name,asc'}"
+                                   class="fas fa-sort-alpha-down"></a>
+                            </span>
+                            <a th:if="${sortProperty != 'customer.name'}" th:href="@{'?sort=customer.name'}"
+                               class="fas fa-sort"></a>
+                        </th>
+                        <th scope="col" class="d-none d-sm-table-cell">Pakiet
+                            <span th:if="${sortProperty == 'servicePackage'}">
+                                <a th:if="${sortDesc == false}" th:href="@{'?sort=servicePackage,desc'}"
+                                   class="fas fa-sort-alpha-up"></a>
+                                <a th:if="${sortDesc == true}" th:href="@{'?sort=servicePackage,asc'}"
+                                   class="fas fa-sort-alpha-down"></a>
+                            </span>
+                            <a th:if="${sortProperty != 'servicePackage'}" th:href="@{'?sort=servicePackage'}"
+                               class="fas fa-sort"></a>
+                        </th>
+                        <th scope="col" class="d-none d-sm-table-cell">Data wydarzenia
+                            <span th:if="${sortProperty == 'dateOfEvent'}">
+                                <a th:if="${sortDesc == false}" th:href="@{'?sort=dateOfEvent,desc'}"
+                                   class="fas fa-sort-numeric-up"></a>
+                                <a th:if="${sortDesc == true}" th:href="@{'?sort=dateOfEvent,asc'}"
+                                   class="fas fa-sort-numeric-down"></a>
+                            </span>
+                            <a th:if="${sortProperty != 'dateOfEvent'}" th:href="@{'?sort=dateOfEvent'}"
+                               class="fas fa-sort"></a>
+                        </th>
                         <th scope="col" class="d-none d-sm-table-cell">Akcje</th>
                     </tr>
                     </thead>

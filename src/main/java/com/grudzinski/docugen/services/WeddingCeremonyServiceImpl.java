@@ -31,7 +31,16 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
     @Override
     public List<WeddingCeremony> getWeddings() {
         List<WeddingCeremony> weddings = new ArrayList<>();
-        weddingCeremonyRepository.findAll(Sort.by("dateOfEvent")).forEach(weddings::add);
+        weddingCeremonyRepository.findAll().forEach(weddings::add);
+
+        return weddings;
+    }
+
+    @Override
+    public List<WeddingCeremony> getWeddingsSorted(Sort sort) {
+        List<WeddingCeremony> weddings = new ArrayList<>();
+        weddingCeremonyRepository.findAll(sort).forEach(weddings::add);
+
 
         return weddings;
     }
