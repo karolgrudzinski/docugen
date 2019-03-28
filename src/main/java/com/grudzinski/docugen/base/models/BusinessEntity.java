@@ -1,4 +1,4 @@
-package com.grudzinski.docugen.model.base;
+package com.grudzinski.docugen.base.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

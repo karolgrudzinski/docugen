@@ -1,7 +1,8 @@
-package com.grudzinski.docugen.model.document;
+package com.grudzinski.docugen.wedding.model;
 
-import com.grudzinski.docugen.model.base.Customer;
-import com.grudzinski.docugen.model.base.PaymentMethod;
+import com.grudzinski.docugen.customer.models.Customer;
+import com.grudzinski.docugen.base.models.PaymentMethod;
+import com.grudzinski.docugen.base.models.BaseDocument;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;

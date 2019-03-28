@@ -1,6 +1,5 @@
-package com.grudzinski.docugen.model.document;
+package com.grudzinski.docugen.base.models;
 
-import com.grudzinski.docugen.model.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,5 +1,6 @@
-package com.grudzinski.docugen.model.base;
+package com.grudzinski.docugen.customer.models;
 
+import com.grudzinski.docugen.base.models.BusinessEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,6 +1,6 @@
-package com.grudzinski.docugen.services;
+package com.grudzinski.docugen.wedding.services;
 
-import com.grudzinski.docugen.model.document.WeddingCeremony;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;

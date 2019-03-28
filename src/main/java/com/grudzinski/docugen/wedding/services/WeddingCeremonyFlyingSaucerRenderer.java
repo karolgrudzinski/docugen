@@ -1,6 +1,6 @@
-package com.grudzinski.docugen.services;
+package com.grudzinski.docugen.wedding.services;
 
-import com.grudzinski.docugen.model.document.WeddingCeremony;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.lowagie.text.pdf.BaseFont;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;

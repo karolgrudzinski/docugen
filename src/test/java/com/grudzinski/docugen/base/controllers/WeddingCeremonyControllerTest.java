@@ -1,9 +1,10 @@
-package com.grudzinski.docugen.controllers;
+package com.grudzinski.docugen.base.controllers;
 
-import com.grudzinski.docugen.exceptions.NotFoundException;
-import com.grudzinski.docugen.model.document.WeddingCeremony;
-import com.grudzinski.docugen.services.WeddingCeremonyRendererService;
-import com.grudzinski.docugen.services.WeddingCeremonyService;
+import com.grudzinski.docugen.base.exceptions.NotFoundException;
+import com.grudzinski.docugen.wedding.controllers.WeddingCeremonyController;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
+import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

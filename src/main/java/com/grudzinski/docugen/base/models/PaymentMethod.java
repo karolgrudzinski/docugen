@@ -1,4 +1,4 @@
-package com.grudzinski.docugen.model.base;
+package com.grudzinski.docugen.base.models;
 
 public enum PaymentMethod {
     CASH("CASH"), TRANSFER("TRANSFER");

@@ -1,10 +1,10 @@
-package com.grudzinski.docugen.services;
+package com.grudzinski.docugen.wedding.services;
 
-import com.grudzinski.docugen.exceptions.NotFoundException;
-import com.grudzinski.docugen.model.base.Customer;
-import com.grudzinski.docugen.model.document.WeddingCeremony;
-import com.grudzinski.docugen.repository.CustomerRepository;
-import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
+import com.grudzinski.docugen.base.exceptions.NotFoundException;
+import com.grudzinski.docugen.customer.models.Customer;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.customer.repositories.CustomerRepository;
+import com.grudzinski.docugen.wedding.repositories.WeddingCeremonyRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

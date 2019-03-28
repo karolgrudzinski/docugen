@@ -1,9 +1,9 @@
-package com.grudzinski.docugen.services;
+package com.grudzinski.docugen.wedding.services;
 
-import com.grudzinski.docugen.exceptions.NotFoundException;
-import com.grudzinski.docugen.model.document.WeddingCeremony;
-import com.grudzinski.docugen.repository.CustomerRepository;
-import com.grudzinski.docugen.repository.WeddingCeremonyRepository;
+import com.grudzinski.docugen.base.exceptions.NotFoundException;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.customer.repositories.CustomerRepository;
+import com.grudzinski.docugen.wedding.repositories.WeddingCeremonyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -40,8 +40,7 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
     public List<WeddingCeremony> getWeddingsSorted(Sort sort) {
         List<WeddingCeremony> weddings = new ArrayList<>();
         weddingCeremonyRepository.findAll(sort).forEach(weddings::add);
-
-
+        
         return weddings;
     }
 

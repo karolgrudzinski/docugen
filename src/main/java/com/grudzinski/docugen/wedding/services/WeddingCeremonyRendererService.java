@@ -1,6 +1,6 @@
-package com.grudzinski.docugen.services;
+package com.grudzinski.docugen.wedding.services;
 
-import com.grudzinski.docugen.model.document.WeddingCeremony;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 
 import java.io.IOException;
 import java.io.OutputStream;

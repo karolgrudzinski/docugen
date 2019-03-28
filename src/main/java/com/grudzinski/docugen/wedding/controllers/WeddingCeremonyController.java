@@ -1,8 +1,8 @@
-package com.grudzinski.docugen.controllers;
+package com.grudzinski.docugen.wedding.controllers;
 
-import com.grudzinski.docugen.model.document.WeddingCeremony;
-import com.grudzinski.docugen.services.WeddingCeremonyRendererService;
-import com.grudzinski.docugen.services.WeddingCeremonyService;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
+import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;

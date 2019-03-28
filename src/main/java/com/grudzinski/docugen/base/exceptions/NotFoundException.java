@@ -1,4 +1,4 @@
-package com.grudzinski.docugen.exceptions;
+package com.grudzinski.docugen.base.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
