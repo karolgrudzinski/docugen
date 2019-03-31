@@ -1,8 +1,8 @@
 package com.grudzinski.docugen.wedding.model;
 
-import com.grudzinski.docugen.customer.models.Customer;
-import com.grudzinski.docugen.base.models.PaymentMethod;
 import com.grudzinski.docugen.base.models.BaseDocument;
+import com.grudzinski.docugen.base.models.PaymentMethod;
+import com.grudzinski.docugen.customer.models.Customer;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,6 +48,12 @@ public class WeddingCeremony extends BaseDocument {
 
     @Column(name = "service_package")
     private String servicePackage;
+
+    @ManyToMany
+    @JoinTable(name = "wedding_ceremony_package_items",
+            joinColumns = @JoinColumn(name = "wedding_ceremony_id"),
+            inverseJoinColumns = @JoinColumn(name = "package_item_id"))
+    private List<PackageItem> servicePackageItems = new ArrayList<>();
 
     @Column(name = "charge")
     private BigDecimal charge;

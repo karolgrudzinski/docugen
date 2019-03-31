@@ -3,6 +3,7 @@ package com.grudzinski.docugen.base.controllers;
 import com.grudzinski.docugen.base.exceptions.NotFoundException;
 import com.grudzinski.docugen.wedding.controllers.WeddingCeremonyController;
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.wedding.services.PackageItemService;
 import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
 import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
 import org.junit.Before;
@@ -33,6 +34,9 @@ public class WeddingCeremonyControllerTest {
     @Mock
     WeddingCeremonyRendererService weddingCeremonyRendererService;
 
+    @Mock
+    PackageItemService packageItemService;
+
     WeddingCeremonyController controller;
 
     MockMvc mockMvc;
@@ -40,7 +44,7 @@ public class WeddingCeremonyControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        controller = new WeddingCeremonyController(weddingCeremonyService, weddingCeremonyRendererService);
+        controller = new WeddingCeremonyController(weddingCeremonyService, weddingCeremonyRendererService, packageItemService);
 
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver(),
@@ -88,7 +92,8 @@ public class WeddingCeremonyControllerTest {
         mockMvc.perform(get("/wedding/new"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("document/wedding/edit"))
-                .andExpect(model().attributeExists("wedding"));
+                .andExpect(model().attributeExists("wedding"))
+                .andExpect(model().attributeExists("allpackageitems"));
     }
 
     @Test
@@ -99,7 +104,8 @@ public class WeddingCeremonyControllerTest {
         mockMvc.perform(get("/wedding/1/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("document/wedding/edit"))
-                .andExpect(model().attributeExists("wedding"));
+                .andExpect(model().attributeExists("wedding"))
+                .andExpect(model().attributeExists("allpackageitems"));
     }
 
     @Test

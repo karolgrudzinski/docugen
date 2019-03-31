@@ -1,6 +1,7 @@
 package com.grudzinski.docugen.wedding.controllers;
 
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.wedding.services.PackageItemService;
 import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
 import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +27,12 @@ public class WeddingCeremonyController {
 
     private final WeddingCeremonyRendererService weddingCeremonyRendererService;
 
-    public WeddingCeremonyController(WeddingCeremonyService weddingCeremonyService, WeddingCeremonyRendererService weddingCeremonyRendererService) {
+    private final PackageItemService packageItemService;
+
+    public WeddingCeremonyController(WeddingCeremonyService weddingCeremonyService, WeddingCeremonyRendererService weddingCeremonyRendererService, PackageItemService packageItemService) {
         this.weddingCeremonyService = weddingCeremonyService;
         this.weddingCeremonyRendererService = weddingCeremonyRendererService;
+        this.packageItemService = packageItemService;
     }
 
     @RequestMapping({"/", "/index", "/list"})
@@ -56,6 +60,7 @@ public class WeddingCeremonyController {
     @RequestMapping({"/new"})
     public String newWedding(Model model) {
         model.addAttribute("wedding", new WeddingCeremony());
+        model.addAttribute("allpackageitems", packageItemService.getPackageItems());
 
         return "document/wedding/edit";
     }
@@ -64,6 +69,7 @@ public class WeddingCeremonyController {
     public String editWedding(@PathVariable String id, Model model) {
         WeddingCeremony weddingCeremony = weddingCeremonyService.findById(Long.valueOf(id));
         model.addAttribute("wedding", weddingCeremony);
+        model.addAttribute("allpackageitems", packageItemService.getPackageItems());
 
         return "document/wedding/edit";
     }
@@ -73,6 +79,8 @@ public class WeddingCeremonyController {
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(objectError -> log.debug(objectError.toString()));
+
+            model.addAttribute("allpackageitems", packageItemService.getPackageItems());
 
             return "document/wedding/edit";
         }

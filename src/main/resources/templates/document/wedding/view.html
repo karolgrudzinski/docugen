@@ -142,8 +142,14 @@
                                 <p class="font-times text-normal">Oprawa muzyczna zapewniona przez Wykonawcę może
                                     przebiegać w
                                     składzie:</p>
-                                <p class="font-times text-normal text-bold" th:text="${wedding.getServicePackage()}">
-                                    skrzypce</p>
+                                <ul class="font-times text-normal">
+                                    <li th:each="packageitem : ${wedding.getServicePackageItems()}"
+                                        th:text="${packageitem.getName()}" class="font-times text-normal text-bold">
+                                    </li>
+                                    <li th:if="${not #strings.isEmpty(wedding.getServicePackage())}" th:text="${wedding.getServicePackage()}"
+                                        class="font-times text-normal text-bold">
+                                        skrzypce</li>
+                                </ul>
                             </li>
                             <li class="font-times text-normal">
                                 <p class="font-times text-normal">
