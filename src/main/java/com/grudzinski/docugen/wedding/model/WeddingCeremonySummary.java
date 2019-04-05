@@ -14,7 +14,7 @@ import java.time.LocalTime;
 @Getter
 @Immutable
 @Subselect(value = "SELECT wedding_ceremony.id, " +
-        "CONCAT(STRING_AGG(package_items.name, ', '), wedding_ceremony.service_package) AS service_Package, " +
+        "CONCAT_WS(', ', STRING_AGG(package_items.name, ', '), wedding_ceremony.service_package) AS service_Package, " +
         "customers.name as customer_Name, " +
         "wedding_ceremony.date_of_event AS date_Of_Event, " +
         "wedding_ceremony.time_of_event AS time_Of_Event " +
