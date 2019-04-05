@@ -24,7 +24,7 @@ CREATE TABLE public.customers (
 
 -- Permissions
 
-ALTER TABLE public.customers OWNER TO postgres;
+-- ALTER TABLE public.customers OWNER TO postgres;
 
 --
 -- Name: wedding_ceremony; Type: TABLE; Schema: public; Owner: postgres
@@ -57,5 +57,5 @@ CREATE TABLE public.wedding_ceremony (
 
 -- Permissions
 
-ALTER TABLE public.wedding_ceremony OWNER TO postgres;
+-- ALTER TABLE public.wedding_ceremony OWNER TO postgres;
 
