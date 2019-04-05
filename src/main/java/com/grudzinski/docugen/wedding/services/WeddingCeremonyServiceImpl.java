@@ -1,9 +1,11 @@
 package com.grudzinski.docugen.wedding.services;
 
 import com.grudzinski.docugen.base.exceptions.NotFoundException;
-import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.grudzinski.docugen.customer.repositories.CustomerRepository;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.wedding.model.WeddingCeremonySummary;
 import com.grudzinski.docugen.wedding.repositories.WeddingCeremonyRepository;
+import com.grudzinski.docugen.wedding.repositories.WeddingCeremonySummaryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,12 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
 
     private final WeddingCeremonyRepository weddingCeremonyRepository;
     private final CustomerRepository customerRepository;
+    private final WeddingCeremonySummaryRepository weddingCeremonySummaryRepository;
 
-    public WeddingCeremonyServiceImpl(WeddingCeremonyRepository weddingCeremonyRepository, CustomerRepository customerRepository) {
+    public WeddingCeremonyServiceImpl(WeddingCeremonyRepository weddingCeremonyRepository, CustomerRepository customerRepository, WeddingCeremonySummaryRepository weddingCeremonySummaryRepository) {
         this.weddingCeremonyRepository = weddingCeremonyRepository;
         this.customerRepository = customerRepository;
+        this.weddingCeremonySummaryRepository = weddingCeremonySummaryRepository;
     }
 
     @Override
@@ -40,7 +44,15 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
     public List<WeddingCeremony> getWeddingsSorted(Sort sort) {
         List<WeddingCeremony> weddings = new ArrayList<>();
         weddingCeremonyRepository.findAll(sort).forEach(weddings::add);
-        
+
+        return weddings;
+    }
+
+    @Override
+    public List<WeddingCeremonySummary> getWeddingSummariesSorted(Sort sort) {
+        List<WeddingCeremonySummary> weddings = new ArrayList<>();
+        weddingCeremonySummaryRepository.findAll(sort).forEach(weddings::add);
+
         return weddings;
     }
 

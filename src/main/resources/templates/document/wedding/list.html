@@ -49,13 +49,13 @@
                     <tr>
                         <th scope="col" class="d-none d-sm-table-cell">#</th>
                         <th scope="col" class="d-none d-sm-table-cell">Zamawiający
-                            <span th:if="${sortProperty == 'customer.name'}">
-                                <a th:if="${sortDesc == false}" th:href="@{'?sort=customer.name,desc'}"
+                            <span th:if="${sortProperty == 'customerName'}">
+                                <a th:if="${sortDesc == false}" th:href="@{'?sort=customerName,desc'}"
                                    class="fas fa-sort-alpha-up"></a>
-                                <a th:if="${sortDesc == true}" th:href="@{'?sort=customer.name,asc'}"
+                                <a th:if="${sortDesc == true}" th:href="@{'?sort=customerName,asc'}"
                                    class="fas fa-sort-alpha-down"></a>
                             </span>
-                            <a th:if="${sortProperty != 'customer.name'}" th:href="@{'?sort=customer.name'}"
+                            <a th:if="${sortProperty != 'customerName'}" th:href="@{'?sort=customerName'}"
                                class="fas fa-sort"></a>
                         </th>
                         <th scope="col" class="d-none d-sm-table-cell">Pakiet
@@ -112,7 +112,7 @@
                     </tr>
                     <tr th:each="wedding : ${weddings}">
                         <th scope="row" class="d-none d-sm-table-cell" th:text="${wedding.id}">3</th>
-                        <td class="d-block d-sm-table-cell" th:text="${wedding.customer.name}">Jan Kowalski, Anna
+                        <td class="d-block d-sm-table-cell" th:text="${wedding.customerName}">Jan Kowalski, Anna
                             Nowak
                         </td>
                         <td class="d-inline d-sm-table-cell" th:text="${wedding.servicePackage}">Pakiet A</td>

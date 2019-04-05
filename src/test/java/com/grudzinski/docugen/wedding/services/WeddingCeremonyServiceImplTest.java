@@ -2,9 +2,10 @@ package com.grudzinski.docugen.wedding.services;
 
 import com.grudzinski.docugen.base.exceptions.NotFoundException;
 import com.grudzinski.docugen.customer.models.Customer;
-import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.grudzinski.docugen.customer.repositories.CustomerRepository;
+import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.grudzinski.docugen.wedding.repositories.WeddingCeremonyRepository;
+import com.grudzinski.docugen.wedding.repositories.WeddingCeremonySummaryRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -28,12 +29,15 @@ public class WeddingCeremonyServiceImplTest {
     @Mock
     CustomerRepository customerRepository;
 
+    @Mock
+    WeddingCeremonySummaryRepository weddingCeremonySummaryRepository;
+
     private WeddingCeremonyServiceImpl weddingCeremonyService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        weddingCeremonyService = new WeddingCeremonyServiceImpl(weddingCeremonyRepository, customerRepository);
+        weddingCeremonyService = new WeddingCeremonyServiceImpl(weddingCeremonyRepository, customerRepository, weddingCeremonySummaryRepository);
     }
 
     @Test

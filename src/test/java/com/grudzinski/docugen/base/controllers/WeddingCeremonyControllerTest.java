@@ -3,6 +3,7 @@ package com.grudzinski.docugen.base.controllers;
 import com.grudzinski.docugen.base.exceptions.NotFoundException;
 import com.grudzinski.docugen.wedding.controllers.WeddingCeremonyController;
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
+import com.grudzinski.docugen.wedding.model.WeddingCeremonySummary;
 import com.grudzinski.docugen.wedding.services.PackageItemService;
 import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
 import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
@@ -54,19 +55,19 @@ public class WeddingCeremonyControllerTest {
 
     @Test
     public void testListWeddings() throws Exception {
-        List<WeddingCeremony> weddings = new ArrayList<>();
-        weddings.add(new WeddingCeremony());
-        weddings.add(new WeddingCeremony());
-        weddings.add(new WeddingCeremony());
+        List<WeddingCeremonySummary> weddings = new ArrayList<>();
+        weddings.add(new WeddingCeremonySummary());
+        weddings.add(new WeddingCeremonySummary());
+        weddings.add(new WeddingCeremonySummary());
 
-        when(weddingCeremonyService.getWeddingsSorted(any())).thenReturn(weddings);
+        when(weddingCeremonyService.getWeddingSummariesSorted(any())).thenReturn(weddings);
 
         mockMvc.perform(get("/wedding/index"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("document/wedding/list"))
                 .andExpect(model().attributeExists("weddings"));
 
-        verify(weddingCeremonyService).getWeddingsSorted(any());
+        verify(weddingCeremonyService).getWeddingSummariesSorted(any());
     }
 
     @Test

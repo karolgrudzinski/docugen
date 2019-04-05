@@ -39,7 +39,7 @@ public class WeddingCeremonyController {
     public String listWeddings(@SortDefault(value = "dateOfEvent", direction = Sort.Direction.ASC) Sort sort,
                                Model model) {
 
-        model.addAttribute("weddings", weddingCeremonyService.getWeddingsSorted(sort));
+        model.addAttribute("weddings", weddingCeremonyService.getWeddingSummariesSorted(sort));
 
         Sort.Order order = sort.get().findFirst().get();
         model.addAttribute("sortProperty", order.getProperty());
