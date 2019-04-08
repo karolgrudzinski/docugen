@@ -44,7 +44,10 @@
             <div>
                 <a class="btn btn-info" href="#" th:href="@{/wedding/list}">
                     <span class="fas fa-times">&nbsp;</span>Powrót</a>
-                <a class="btn btn-primary" href="#" th:href="@{/wedding/{id}/pdf(id=${wedding.id})}"
+                <a class="btn btn-primary" href="#" role="button"
+                   th:href="@{'/wedding/' + ${wedding.id} + '/edit'}" type="button">
+                    <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
+                <a class="btn btn-danger" href="#" th:href="@{/wedding/{id}/pdf(id=${wedding.id})}"
                    type="button"><span class="fas fa-file-pdf">&nbsp;</span>Generuj PDF</a>
             </div>
             <div th:if="${bottomMenu != null}">
