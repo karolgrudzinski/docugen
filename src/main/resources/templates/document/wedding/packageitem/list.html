@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Oprawa muzyczna ślubu</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Oprawa muzyczna ślubu w kościele</h2>
+         </div>
+        <div th:fragment="menu" class="navbar">
+            <div>
+                <a class="btn btn-primary card-link" href="#" th:href="@{'/wedding/packageitem/new'}">
+                    <span class="fas fa-file-contract">&nbsp;</span>Nowy element</a>
+            </div>
+            <div th:if="${bottomMenu != null}">
+                <a class="btn btn-secondary" href="#top">
+                    <span class="fas fa-arrow-up">&nbsp;</span>Na górę</a>
+            </div>
+            <div th:if="${bottomMenu == null}">
+                <a class="btn btn-primary" th:href="@{'/wedding/'}">Umowy</a>
+                <a class="btn btn-dark" th:href="@{/logout}">
+                    <span class="fas fa-door-open">&nbsp;</span>Wyloguj</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row" th:if="${#lists.isEmpty(packageitems)}">Brak elementów do wyświetlenia</div>
+            <div class="table-responsive-md" th:if="${not #lists.isEmpty(packageitems)}">
+                <table class="table table-hover table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="d-none d-sm-table-cell">#</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Element pakietu usług
+<!--                            <span th:if="${sortProperty == 'name'}">-->
+<!--                                <a th:if="${sortDesc == false}" th:href="@{'?sort=name,desc'}"-->
+<!--                                   class="fas fa-sort-alpha-up"></a>-->
+<!--                                <a th:if="${sortDesc == true}" th:href="@{'?sort=name,asc'}"-->
+<!--                                   class="fas fa-sort-alpha-down"></a>-->
+<!--                            </span>-->
+<!--                            <a th:if="${sortProperty != 'name'}" th:href="@{'?sort=name'}"-->
+<!--                               class="fas fa-sort"></a>-->
+                        </th>
+                        <th scope="col" class="d-none d-sm-table-cell">Akcje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:remove="all">
+                        <th scope="row" class="d-none d-sm-table-cell">1</th>
+                        <td class="d-block d-sm-table-cell">Organista</td>
+                        <td class="d-block d-sm-table-cell">
+                            <a class="btn btn-primary" href="#" role="button" type="button">
+                                <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button" type="button">
+                                <span class="fas fa-trash-alt">&nbsp;</span>Usuń</a>
+                        </td>
+                    </tr>
+                    <tr th:remove="all">
+                        <th scope="row" class="d-none d-sm-table-cell">2</th>
+                        <td class="d-block d-sm-table-cell">Wokalistka</td>
+                        <td class="d-block d-sm-table-cell">
+                            <a class="btn btn-primary" href="#" role="button" type="button">
+                                <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button" type="button">
+                                <span class="fas fa-trash-alt">&nbsp;</span>Usuń</a>
+                        </td>
+                    </tr>
+                    <tr th:each="packageitem : ${packageitems}">
+                        <th scope="row" class="d-none d-sm-table-cell" th:text="${packageitem.id}">3</th>
+                        <td class="d-block d-sm-table-cell" th:text="${packageitem.name}">Organista</td>
+                        <td class="d-block d-sm-table-cell">
+                            <a class="btn btn-primary" href="#" role="button"
+                               th:href="@{'/wedding/packageitem/' + ${packageitem.id} + '/edit'}" type="button">
+                                <span class="fas fa-edit">&nbsp;</span>Edytuj</a>
+                            <a class="btn btn-danger" href="#" role="button"
+                               th:href="@{'/wedding/packageitem/' + ${packageitem.id} + '/delete'}" type="button">
+                               <span class="fas fa-trash-alt">&nbsp;</span>Usuń</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div th:replace="::menu(bottomMenu=1)"></div>
+    </div>
+</div>
+</body>
+</html>

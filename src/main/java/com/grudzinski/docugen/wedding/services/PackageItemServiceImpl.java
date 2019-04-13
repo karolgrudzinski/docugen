@@ -6,9 +6,7 @@ import com.grudzinski.docugen.wedding.repositories.PackageItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -21,8 +19,8 @@ public class PackageItemServiceImpl implements PackageItemService {
     }
 
     @Override
-    public Set<PackageItem> getPackageItems() {
-        Set<PackageItem> packageItems = new HashSet<>();
+    public List<PackageItem> getPackageItems() {
+        List<PackageItem> packageItems = new ArrayList<>();
         packageItemRepository.findAll().forEach(packageItems::add);
 
         return packageItems;
@@ -33,9 +31,30 @@ public class PackageItemServiceImpl implements PackageItemService {
         Optional<PackageItem> bundleItemOptional;
         bundleItemOptional = packageItemRepository.findById(id);
         if (!bundleItemOptional.isPresent()) {
-             throw new NotFoundException("BundleItem not found for Id:" + id);
+             throw new NotFoundException("PackageItem not found for Id:" + id);
         }
 
         return bundleItemOptional.get();
+    }
+
+    @Override
+    public PackageItem save(PackageItem packageItem) {
+        PackageItem packageItemToSave;
+        if (packageItem.getId() != null) {
+            packageItemToSave = this.findById(packageItem.getId());
+            if (packageItemToSave != null) {
+                packageItemToSave.setName(packageItem.getName());
+            }
+        } else {
+            packageItemToSave = packageItem;
+        }
+        PackageItem savedPackageItem = packageItemRepository.save(packageItemToSave);
+        
+        return savedPackageItem;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        packageItemRepository.deleteById(id);
     }
 }

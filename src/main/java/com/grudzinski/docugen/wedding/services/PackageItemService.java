@@ -2,9 +2,11 @@ package com.grudzinski.docugen.wedding.services;
 
 import com.grudzinski.docugen.wedding.model.PackageItem;
 
-import java.util.Set;
+import java.util.List;
 
 public interface PackageItemService {
-    Set<PackageItem> getPackageItems();
+    List<PackageItem> getPackageItems();
     PackageItem findById(Long id);
+    PackageItem save(PackageItem packageItem);
+    void deleteById(Long id);
 }

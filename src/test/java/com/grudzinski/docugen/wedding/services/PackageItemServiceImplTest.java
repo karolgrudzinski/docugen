@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,12 +22,12 @@ public class PackageItemServiceImplTest {
     @Mock
     PackageItemRepository packageItemRepository;
 
-    private PackageItemServiceImpl bundleItemService;
+    private PackageItemServiceImpl packageItemService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        bundleItemService = new PackageItemServiceImpl(packageItemRepository);
+        packageItemService = new PackageItemServiceImpl(packageItemRepository);
     }
 
     @Test
@@ -38,7 +39,7 @@ public class PackageItemServiceImplTest {
 
         when(packageItemRepository.findAll()).thenReturn(packageItems);
 
-        Set<PackageItem> packageItemsReturned = bundleItemService.getPackageItems();
+        List<PackageItem> packageItemsReturned = packageItemService.getPackageItems();
         assertEquals(3L, packageItemsReturned.size());
         verify(packageItemRepository).findAll();
         verify(packageItemRepository, never()).findById(anyLong());
@@ -51,7 +52,7 @@ public class PackageItemServiceImplTest {
 
         when(packageItemRepository.findById(anyLong())).thenReturn(Optional.of(packageItem));
 
-        PackageItem packageItemReturned = bundleItemService.findById(3L);
+        PackageItem packageItemReturned = packageItemService.findById(3L);
 
         assertNotNull("Null BundleItem returned", packageItemReturned);
         verify(packageItemRepository).findById(anyLong());
@@ -64,6 +65,14 @@ public class PackageItemServiceImplTest {
 
         when(packageItemRepository.findById(anyLong())).thenReturn(bundleItemOptional);
         
-        PackageItem packageItemReturned = bundleItemService.findById(1L);
+        PackageItem packageItemReturned = packageItemService.findById(1L);
+    }
+
+    @Test
+    public void shouldDeleteById() {
+        Long idToDelete = 2L;
+        packageItemService.deleteById(idToDelete);
+
+        verify(packageItemRepository).deleteById(anyLong());
     }
 }

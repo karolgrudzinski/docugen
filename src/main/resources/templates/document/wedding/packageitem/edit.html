@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Oprawa muzyczna ślubu</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="card">
+        <form th:object="${packageitem}" th:action="@{/wedding/packageitem/save}" method="post">
+            <a id="top"></a>
+
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="card-header">
+                <h2 class="card-title">Oprawa muzyczna ślubu w kościele</h2>
+                <h2>Element pakietu usług</h2>
+            </div>
+            <div th:fragment="menu" class="navbar">
+                <div>
+                    <a class="btn btn-info" href="#" th:href="@{/wedding/packageitem/list}">
+                        <span class="fas fa-times">&nbsp;</span>Powrót</a>
+                    <button type="submit" class="btn btn-primary" role="button">
+                        <span class="fas fa-save">&nbsp;</span>Zapisz</button>
+                </div>
+                <div th:if="${bottomMenu != null}">
+                    <a class="btn btn-secondary" href="#top">
+                        <span class="fas fa-arrow-up">&nbsp;</span>Na górę</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card border-secondary">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nazwa:</label>
+                                <input type="text" class="form-control" th:field="*{name}"
+                                       th:errorclass="is-invalid"/>
+                                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                     class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div th:replace="::menu(bottomMenu=1)"></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
