@@ -11,8 +11,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -53,7 +53,7 @@ public class WeddingCeremony extends BaseDocument {
     @JoinTable(name = "wedding_ceremony_package_items",
             joinColumns = @JoinColumn(name = "wedding_ceremony_id"),
             inverseJoinColumns = @JoinColumn(name = "package_item_id"))
-    private List<PackageItem> servicePackageItems = new ArrayList<>();
+    private Set<PackageItem> servicePackageItems = new HashSet<>();
 
     @Column(name = "charge")
     private BigDecimal charge;
