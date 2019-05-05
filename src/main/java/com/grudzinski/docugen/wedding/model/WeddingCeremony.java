@@ -1,6 +1,6 @@
 package com.grudzinski.docugen.wedding.model;
 
-import com.grudzinski.docugen.base.models.BaseDocument;
+import com.grudzinski.docugen.base.models.BaseAuditableEntity;
 import com.grudzinski.docugen.base.models.PaymentMethod;
 import com.grudzinski.docugen.customer.models.Customer;
 import lombok.Getter;
@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-public class WeddingCeremony extends BaseDocument {
+public class WeddingCeremony extends BaseAuditableEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_signing")

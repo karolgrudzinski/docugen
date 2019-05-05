@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public class BaseDocument extends BaseEntity {
+public class BaseAuditableEntity extends BaseEntity {
 
     @Column(name = "creation_time")
     private LocalDateTime creationTime;
