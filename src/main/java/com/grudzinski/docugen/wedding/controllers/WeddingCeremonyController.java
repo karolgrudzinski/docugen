@@ -1,9 +1,7 @@
 package com.grudzinski.docugen.wedding.controllers;
 
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
-import com.grudzinski.docugen.wedding.services.PackageItemService;
-import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
-import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
+import com.grudzinski.docugen.wedding.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
@@ -29,10 +27,16 @@ public class WeddingCeremonyController {
 
     private final PackageItemService packageItemService;
 
-    public WeddingCeremonyController(WeddingCeremonyService weddingCeremonyService, WeddingCeremonyRendererService weddingCeremonyRendererService, PackageItemService packageItemService) {
+    private final PdfStorageService pdfStorageService;
+
+    public WeddingCeremonyController(WeddingCeremonyService weddingCeremonyService,
+                                     WeddingCeremonyRendererService weddingCeremonyRendererService,
+                                     PackageItemService packageItemService,
+                                     PdfStorageService pdfStorageService) {
         this.weddingCeremonyService = weddingCeremonyService;
         this.weddingCeremonyRendererService = weddingCeremonyRendererService;
         this.packageItemService = packageItemService;
+        this.pdfStorageService = pdfStorageService;
     }
 
     @RequestMapping({"/", "/index", "/list"})
@@ -124,6 +128,8 @@ public class WeddingCeremonyController {
         response.setContentLength(outputStream.size());
 //        log.debug(String.format("attachment; filename='%s.pdf'", weddingCeremony.getDocumentShortName()));
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s.pdf\"", weddingCeremony.getDocumentShortName()));
+
+//        pdfStorageService.save(outputStream, weddingCeremony.getDocumentShortName());
 
         outputStream.writeTo(response.getOutputStream());
         outputStream.flush();

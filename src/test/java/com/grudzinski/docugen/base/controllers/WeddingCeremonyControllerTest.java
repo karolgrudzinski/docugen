@@ -4,9 +4,7 @@ import com.grudzinski.docugen.base.exceptions.NotFoundException;
 import com.grudzinski.docugen.wedding.controllers.WeddingCeremonyController;
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.grudzinski.docugen.wedding.model.WeddingCeremonySummary;
-import com.grudzinski.docugen.wedding.services.PackageItemService;
-import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
-import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
+import com.grudzinski.docugen.wedding.services.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -38,6 +36,9 @@ public class WeddingCeremonyControllerTest {
     @Mock
     PackageItemService packageItemService;
 
+    @Mock
+    PdfStorageService pdfStorageService;
+
     WeddingCeremonyController controller;
 
     MockMvc mockMvc;
@@ -45,7 +46,7 @@ public class WeddingCeremonyControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        controller = new WeddingCeremonyController(weddingCeremonyService, weddingCeremonyRendererService, packageItemService);
+        controller = new WeddingCeremonyController(weddingCeremonyService, weddingCeremonyRendererService, packageItemService, pdfStorageService);
 
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver(),
