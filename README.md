@@ -24,4 +24,6 @@ One of the most important functions of an application is ability to create and d
 
 ## Tests status
 [![CircleCI](https://circleci.com/gh/karolgrudzinski/docugen.svg?style=svg)](https://circleci.com/gh/karolgrudzinski/docugen)
-[![codecov](https://codecov.io/gh/karolgrudzinski/docugen/branch/master/graph/badge.svg)](https://codecov.io/gh/karolgrudzinski/docugen)
+[![codecov](https://codecov.io/gh/karolgrudzinski/docugen/branch/master/graph/badge.svg?token=ZN03n5CTFr)](https://codecov.io/gh/karolgrudzinski/docugen)
+
+
