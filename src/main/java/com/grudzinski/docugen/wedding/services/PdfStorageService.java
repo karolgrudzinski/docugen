@@ -1,8 +1,13 @@
 package com.grudzinski.docugen.wedding.services;
 
-import java.io.OutputStream;
+import com.grudzinski.docugen.wedding.model.PdfFile;
+
+import java.io.ByteArrayOutputStream;
+import java.util.UUID;
 
 public interface PdfStorageService {
-    void save(OutputStream document, String fileName);
-    
+    PdfFile save(ByteArrayOutputStream document, String fileName);
+    PdfFile save(PdfFile pdfFile);
+    PdfFile findById(Long id);
+    PdfFile findByUuid(UUID uuid);
 }
