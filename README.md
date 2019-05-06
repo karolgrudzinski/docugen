@@ -23,7 +23,7 @@ One of the most important functions of an application is ability to create and d
 - Allow caching generated PDFs for future downloading
 
 ## Tests status
-[![CircleCI](https://circleci.com/gh/karolgrudzinski/docugen.svg?style=svg)](https://circleci.com/gh/karolgrudzinski/docugen)
+[![CircleCI](https://circleci.com/gh/karolgrudzinski/docugen.svg?style=svg&circle-token=f02c9138e06dd42970efb4465fd42c6d3b57bcff)](https://circleci.com/gh/karolgrudzinski/docugen)
 [![codecov](https://codecov.io/gh/karolgrudzinski/docugen/branch/master/graph/badge.svg?token=ZN03n5CTFr)](https://codecov.io/gh/karolgrudzinski/docugen)
 
 
