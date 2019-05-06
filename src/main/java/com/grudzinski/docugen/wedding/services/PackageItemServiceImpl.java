@@ -28,13 +28,13 @@ public class PackageItemServiceImpl implements PackageItemService {
 
     @Override
     public PackageItem findById(Long id) {
-        Optional<PackageItem> bundleItemOptional;
-        bundleItemOptional = packageItemRepository.findById(id);
-        if (!bundleItemOptional.isPresent()) {
+        Optional<PackageItem> packageItemOptional;
+        packageItemOptional = packageItemRepository.findById(id);
+        if (!packageItemOptional.isPresent()) {
              throw new NotFoundException("PackageItem not found for Id:" + id);
         }
 
-        return bundleItemOptional.get();
+        return packageItemOptional.get();
     }
 
     @Override
