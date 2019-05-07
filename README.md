@@ -25,7 +25,8 @@ One of the most important functions of an application is ability to create and d
 [Demo on Heroku, login/pass:admin/admin](https://docugen-demo.herokuapp.com)
 
 ## TODO
-- Allow caching generated PDFs for future downloading
+- Implement proper mechanism for evicting obsolete files from DB cache
+- Create support for user accounts
 
 ## Tests status
 [![CircleCI](https://circleci.com/gh/karolgrudzinski/docugen.svg?style=svg&circle-token=f02c9138e06dd42970efb4465fd42c6d3b57bcff)](https://circleci.com/gh/karolgrudzinski/docugen)

@@ -1,10 +1,15 @@
 package com.grudzinski.docugen.wedding.controllers;
 
+import com.grudzinski.docugen.wedding.model.PdfFile;
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
-import com.grudzinski.docugen.wedding.services.*;
+import com.grudzinski.docugen.wedding.services.PackageItemService;
+import com.grudzinski.docugen.wedding.services.PdfStorageService;
+import com.grudzinski.docugen.wedding.services.WeddingCeremonyRendererService;
+import com.grudzinski.docugen.wedding.services.WeddingCeremonyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -117,19 +122,28 @@ public class WeddingCeremonyController {
         WeddingCeremony weddingCeremony = weddingCeremonyService.findById(Long.valueOf(id));
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        OutputStream outputStream = response.getOutputStream();
 
-        weddingCeremonyRendererService.generatePDF(weddingCeremony, outputStream);
+        if (weddingCeremony.getPdfFile() != null) {
+            log.debug("Previously generated PDF exists");
+//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().toString());
+//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().isBefore(weddingCeremony.getLastModificationTime()) ? "yes" : "no");
 
-//        log.debug(String.valueOf(outputStream.size()));
+            outputStream.write(weddingCeremony.getPdfFile().getData());
+        } else {
+            log.debug("Previously generated PDF doesn't exists");
 
-        //        response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
-        response.setContentType("application/pdf");
+            weddingCeremonyRendererService.generatePDF(weddingCeremony, outputStream);
+            PdfFile pdfFile = new PdfFile(outputStream.toByteArray(), weddingCeremony.getDocumentShortName());
+            weddingCeremony.setPdfFile(pdfFile);
+            weddingCeremonyService.save(weddingCeremony);
+
+//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().toString());
+//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().isBefore(weddingCeremony.getLastModificationTime()) ? "yes" : "no");
+        }
+
+        response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));
         response.setContentLength(outputStream.size());
-//        log.debug(String.format("attachment; filename='%s.pdf'", weddingCeremony.getDocumentShortName()));
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s.pdf\"", weddingCeremony.getDocumentShortName()));
-
-//        pdfStorageService.save(outputStream, weddingCeremony.getDocumentShortName());
 
         outputStream.writeTo(response.getOutputStream());
         outputStream.flush();
