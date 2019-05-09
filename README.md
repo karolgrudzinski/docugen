@@ -13,11 +13,16 @@ One of the most important functions of an application is ability to create and d
 - Spring Boot 2
 - Spring Data JPA
 - Flying Saucer / OpenPDF
-- Project Lombok 
 - Thymeleaf
 - Bootstrap 4
+- PostgreSQL
+- Flyway
+- Project Lombok 
 - JUnit 4
 - Mockito 
+
+## Demo
+[Demo on Heroku, login/pass:admin/admin](https://docugen-demo.herokuapp.com)
 
 ## TODO
 - Allow caching generated PDFs for future downloading
@@ -25,5 +30,3 @@ One of the most important functions of an application is ability to create and d
 ## Tests status
 [![CircleCI](https://circleci.com/gh/karolgrudzinski/docugen.svg?style=svg&circle-token=f02c9138e06dd42970efb4465fd42c6d3b57bcff)](https://circleci.com/gh/karolgrudzinski/docugen)
 [![codecov](https://codecov.io/gh/karolgrudzinski/docugen/branch/master/graph/badge.svg?token=ZN03n5CTFr)](https://codecov.io/gh/karolgrudzinski/docugen)
-
-
