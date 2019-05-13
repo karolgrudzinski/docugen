@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -119,28 +118,15 @@ public class WeddingCeremonyController {
     }
 
     @GetMapping({"/{id}/pdf"})
-    @Transactional
     public void getWeddingPDF(@PathVariable String id, HttpServletResponse response) throws Exception {
         WeddingCeremony weddingCeremony = weddingCeremonyService.findById(Long.valueOf(id));
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-        if (weddingCeremony.getPdfFile() != null) {
-            log.debug("Previously generated PDF exists");
-//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().toString());
-//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().isBefore(weddingCeremony.getLastModificationTime()) ? "yes" : "no");
+        PdfFile pdfFile = weddingCeremonyService.getWeddingPdf(Long.valueOf(id));
 
-            outputStream.write(weddingCeremony.getPdfFile().getData());
-        } else {
-            log.debug("Previously generated PDF doesn't exists");
-
-            weddingCeremonyRendererService.generatePDF(weddingCeremony, outputStream);
-            PdfFile pdfFile = new PdfFile(outputStream.toByteArray(), weddingCeremony.getDocumentShortName());
-            weddingCeremony.setPdfFile(pdfFile);
-            weddingCeremonyService.save(weddingCeremony);
-
-//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().toString());
-//            log.debug(weddingCeremony.getPdfFile().getLastModificationTime().isBefore(weddingCeremony.getLastModificationTime()) ? "yes" : "no");
+        if (pdfFile != null) {
+            outputStream.write(pdfFile.getData());
         }
 
         response.setContentType(String.valueOf(MediaType.APPLICATION_PDF));

@@ -1,5 +1,6 @@
 package com.grudzinski.docugen.wedding.services;
 
+import com.grudzinski.docugen.wedding.model.PdfFile;
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.grudzinski.docugen.wedding.model.WeddingCeremonySummary;
 import org.springframework.data.domain.Sort;
@@ -12,5 +13,6 @@ public interface WeddingCeremonyService {
     List<WeddingCeremonySummary> getWeddingSummariesSorted(Sort sort);
     WeddingCeremony findById(Long id);
     WeddingCeremony save(WeddingCeremony weddingCeremony);
+    PdfFile getWeddingPdf(Long id) throws Exception;
     void deleteById(Long id);
 }

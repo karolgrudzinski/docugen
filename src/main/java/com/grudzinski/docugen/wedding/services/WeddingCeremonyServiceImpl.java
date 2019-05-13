@@ -2,6 +2,7 @@ package com.grudzinski.docugen.wedding.services;
 
 import com.grudzinski.docugen.base.exceptions.NotFoundException;
 import com.grudzinski.docugen.customer.repositories.CustomerRepository;
+import com.grudzinski.docugen.wedding.model.PdfFile;
 import com.grudzinski.docugen.wedding.model.WeddingCeremony;
 import com.grudzinski.docugen.wedding.model.WeddingCeremonySummary;
 import com.grudzinski.docugen.wedding.repositories.WeddingCeremonyRepository;
@@ -9,7 +10,9 @@ import com.grudzinski.docugen.wedding.repositories.WeddingCeremonySummaryReposit
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.ByteArrayOutputStream;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
@@ -25,11 +28,13 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
     private final WeddingCeremonyRepository weddingCeremonyRepository;
     private final CustomerRepository customerRepository;
     private final WeddingCeremonySummaryRepository weddingCeremonySummaryRepository;
+    private final WeddingCeremonyRendererService weddingCeremonyRendererService;
 
-    public WeddingCeremonyServiceImpl(WeddingCeremonyRepository weddingCeremonyRepository, CustomerRepository customerRepository, WeddingCeremonySummaryRepository weddingCeremonySummaryRepository) {
+    public WeddingCeremonyServiceImpl(WeddingCeremonyRepository weddingCeremonyRepository, CustomerRepository customerRepository, WeddingCeremonySummaryRepository weddingCeremonySummaryRepository, WeddingCeremonyRendererService weddingCeremonyRendererService) {
         this.weddingCeremonyRepository = weddingCeremonyRepository;
         this.customerRepository = customerRepository;
         this.weddingCeremonySummaryRepository = weddingCeremonySummaryRepository;
+        this.weddingCeremonyRendererService = weddingCeremonyRendererService;
     }
 
     @Override
@@ -106,6 +111,31 @@ public class WeddingCeremonyServiceImpl implements WeddingCeremonyService {
         log.debug("Saved WeddingCeremony:" + savedWeddingCeremony.getId());
 
         return savedWeddingCeremony;
+    }
+
+    @Override
+    @Transactional
+    public PdfFile getWeddingPdf(Long id) throws Exception {
+        WeddingCeremony weddingCeremony = this.findById(id);
+
+        if (weddingCeremony != null) {
+            if (weddingCeremony.getPdfFile() != null) {
+                log.debug("Previously generated PDF exists");
+                return weddingCeremony.getPdfFile();
+            } else {
+                log.debug("Previously generated PDF doesn't exists");
+
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                weddingCeremonyRendererService.generatePDF(weddingCeremony, outputStream);
+                PdfFile pdfFile = new PdfFile(outputStream.toByteArray(), weddingCeremony.getDocumentShortName());
+                weddingCeremony.setPdfFile(pdfFile);
+                this.save(weddingCeremony);
+
+                return pdfFile;
+            }
+        } else {
+            return null;
+        }
     }
 
     @Override

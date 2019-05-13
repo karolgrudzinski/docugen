@@ -32,12 +32,15 @@ public class WeddingCeremonyServiceImplTest {
     @Mock
     WeddingCeremonySummaryRepository weddingCeremonySummaryRepository;
 
+    @Mock
+    WeddingCeremonyRendererService weddingCeremonyRendererService;
+
     private WeddingCeremonyServiceImpl weddingCeremonyService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        weddingCeremonyService = new WeddingCeremonyServiceImpl(weddingCeremonyRepository, customerRepository, weddingCeremonySummaryRepository);
+        weddingCeremonyService = new WeddingCeremonyServiceImpl(weddingCeremonyRepository, customerRepository, weddingCeremonySummaryRepository, weddingCeremonyRendererService);
     }
 
     @Test
