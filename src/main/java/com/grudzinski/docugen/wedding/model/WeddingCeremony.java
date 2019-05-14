@@ -68,7 +68,7 @@ public class WeddingCeremony extends BaseAuditableEntity {
     @Column(name = "document_short_name")
     private String documentShortName;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
     private PdfFile pdfFile;
 }
