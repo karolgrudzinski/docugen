@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Getter
@@ -18,4 +19,7 @@ public class PdfFile extends FileObject {
     public PdfFile(byte[] data, String fileName) {
         super(data, fileName);
     }
+
+    @OneToOne(mappedBy = "pdfFile")
+    private WeddingCeremony wedding;
 }

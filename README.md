@@ -25,7 +25,6 @@ One of the most important functions of an application is ability to create and d
 [Demo on Heroku, login/pass:admin/admin](https://docugen-demo.herokuapp.com)
 
 ## TODO
-- Implement proper mechanism for evicting obsolete files from DB cache
 - Create support for user accounts
 
 ## Tests status
