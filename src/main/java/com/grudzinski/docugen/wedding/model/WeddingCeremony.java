@@ -71,4 +71,7 @@ public class WeddingCeremony extends BaseAuditableEntity {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "file_id")
     private PdfFile pdfFile;
+
+    @Lob
+    private String notes;
 }

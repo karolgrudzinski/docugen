@@ -1,0 +1,1 @@
+ALTER TABLE public.wedding_ceremony ADD COLUMN notes TEXT;
